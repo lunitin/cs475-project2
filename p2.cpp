@@ -77,7 +77,7 @@ main( int argc, char *argv[ ] )
 			// If this tile is on an edge
 			if (iu == 0 || iv == 0 || iu == NUMNODES - 1 || iv == NUMNODES - 1) {
 				area /= 2;
-				fprintf(stderr, "Reducing value for an edge\n");
+				if (DEBUG) fprintf(stderr, "Reducing value for an edge\n");
 			}
 
 			// If this tile is a corner 
@@ -86,7 +86,7 @@ main( int argc, char *argv[ ] )
 			     (iu == NUMNODES -1 && iv == 0) ||
 			     (iu == NUMNODES -1 && iv == NUMNODES -1) ) {
 				area /= 2;
-				fprintf(stderr, "Reducing value for an corner\n");
+				if (DEBUG) fprintf(stderr, "Reducing value for an corner\n");
 			}
 			   
 
@@ -103,8 +103,11 @@ main( int argc, char *argv[ ] )
 
 	volume *= 2;
 
-	fprintf(stderr, "%2d threads : %8d nodes ; volume = %6.5lf%% ; megavols/sec = %6.2lf\n",
+	if (DEBUG) fprintf(stderr, "%2d threads : %8d nodes ; volume = %6.5lf%% ; megavols/sec = %6.2lf\n",
 		NUMT, NUMNODES, volume, maxPerformance);
+
+	fprintf(stderr, "%6.2lfe", maxPerformance);
+	
 
 }
 
